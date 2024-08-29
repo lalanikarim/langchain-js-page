@@ -1,20 +1,28 @@
 import { Hono } from 'hono'
+import { env } from 'hono/adapter'
 import { renderer } from './renderer'
-import { ChatBot } from './components'
+import { ChatComponent, InputBox } from './components'
 
 const app = new Hono()
 
 app.use(renderer)
 
 app.get('/', (c) => {
-  return c.render(<ChatBot/>)
+  return c.render(<ChatComponent/>)
 })
 
-app.post('/chat', async (c) => {
+app.post('/ask', async (c) => {
+  const data = await c.req.formData()
+  const prompt = data.get("prompt")
+  return c.html([<div class="message human">{prompt}</div>,<InputBox />].join(""))
+})
+
+app.post('/answer', async (c) => {
+  const { WORKER_URL } = env<{ WORKER_URL: string }>(c)
   const data = await c.req.formData()
   const prompt = data.get("prompt")
   let messages = data.getAll("messages")
-  const response = await fetch("http://localhost:8787",
+  const response = await fetch(WORKER_URL,
     {
       body: JSON.stringify({prompt: prompt, messages: messages}), 
       method: "post",
@@ -23,12 +31,15 @@ app.post('/chat', async (c) => {
         'Content-Type': 'application/json'
       }
     })
-  const aiResp = await response.json()
-  const historyItems = [...messages, "Human: " + prompt, "AI: " + aiResp.response].map(msg => <li>{msg}</li>)
-  const history = <ul id="history" hx-swap-oob="true">{historyItems}</ul>
-  const respMessageList = [...messages, "Human: " + prompt, "AI: " + aiResp.response].map((msg,idx) => <input type="hidden" name="messages" value={msg}/>)
-  const respMessages = <div id="messages" hx-swap-oob="true">{respMessageList}</div>
-  return c.html([history,respMessages])
+  const aiRespObj: any = await response.json()
+  const aiResp: string = aiRespObj.response
+  const history = [...messages, "Human: " + prompt, "AI: " + aiResp].map(
+    (msg,idx) => <input type="hidden" name="messages" value={msg}/>
+  )
+  return c.html(
+      [<div class="message ai">{aiResp}</div>,
+      <div id="history" hx-swap-oob="true">{history}</div>].join("")
+  )
 })
 
 export default app
