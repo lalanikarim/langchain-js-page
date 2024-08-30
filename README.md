@@ -47,3 +47,7 @@ Follow these steps to set up and run the project locally:
    ```
 
    You should now be able to visit the hosted application using the provided Cloudflare Pages url.
+
+# Acknowledgements  
+
+The CSS theme used on this project was inspired by and modified from [Direct Messaging](https://codepen.io/mubangadv/pen/rXrOQa) CSS theme by [Mubanga](https://codepen.io/mubangadv).
