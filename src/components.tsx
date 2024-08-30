@@ -1,7 +1,8 @@
-import { sha256 } from 'js-sha256'
+import { createHash } from 'node:crypto'
 
 export function id_from_hash(msg: string) {
-  return 'id_' + sha256(msg)
+  const hash = createHash('sha256')
+  return 'id_' + hash.update(msg).digest('hex')
 }
 
 export const InputBox = () => (
