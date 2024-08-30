@@ -1,7 +1,7 @@
 import { Hono } from 'hono'
 import { env } from 'hono/adapter'
 import { renderer } from './renderer'
-import { ChatComponent, InputBox } from './components'
+import { ChatComponent, InputBox, Spinner, id_from_hash } from './components'
 
 const app = new Hono()
 
@@ -14,7 +14,13 @@ app.get('/', (c) => {
 app.post('/ask', async (c) => {
   const data = await c.req.formData()
   const prompt = data.get("prompt")
-  return c.html([<div class="message human">{prompt}</div>,<InputBox />].join(""))
+  return c.html(
+    <>
+      <div class="message human">{prompt}</div>
+      <Spinner prompt={prompt} swap={null} />
+      <InputBox />
+    </>
+  )
 })
 
 app.post('/answer', async (c) => {
@@ -33,12 +39,14 @@ app.post('/answer', async (c) => {
     })
   const aiRespObj: any = await response.json()
   const aiResp: string = aiRespObj.response
-  const history = [...messages, "Human: " + prompt, "AI: " + aiResp].map(
-    (msg,idx) => <input type="hidden" name="messages" value={msg}/>
+  const history = ["Human: " + prompt, "AI: " + aiResp].map(
+    (msg) => <input type="hidden" name="messages" value={msg}/>
   )
   return c.html(
-      [<div class="message ai">{aiResp}</div>,
-      <div id="history" hx-swap-oob="true">{history}</div>].join("")
+    <>
+      {history}
+      <div id={id_from_hash(prompt)} class="message ai" hx-swap-oob="true">{aiResp}</div>
+    </>
   )
 })
 

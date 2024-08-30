@@ -15,6 +15,7 @@ body, html {
   transform: translate(-50%, -50%);*/
   margin: auto;
   width: 50%;
+  height: 98vh;
 }
 
 .pic {
@@ -100,8 +101,9 @@ body, html {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 24rem;
-  height: 38rem;
+  /*width: 24rem;*/
+  /*height: 38rem;*/
+  height: 100%;
   z-index: 2;
   box-sizing: border-box;
   border-radius: 1rem;
@@ -120,6 +122,7 @@ body, html {
   flex-shrink: 2;
   overflow-y: auto;
   box-shadow: inset 0 2rem 2rem -2rem rgba(0, 0, 0, 0.05), inset 0 -2rem 2rem -2rem rgba(0, 0, 0, 0.05);
+  height: 100%;
 }
 .chat .messages .time {
   font-size: 0.8rem;
@@ -178,7 +181,7 @@ body, html {
   flex-shrink: 0;
   display: flex;
   align-items: center;
-  padding: 0 0.5rem 0 1.5rem;
+  padding: 0.5rem 0.5rem 0.5rem 1.5rem;
 }
 .chat .input i {
   font-size: 1.5rem;
@@ -238,3 +241,77 @@ body, html {
 .htmx-request.htmx-indicator{
     display:inline;
 }
+button[type=submit] {
+  background: none;
+  border: none;
+}
+
+.pic.cloudflare {
+  background-image: url("https://static-00.iconduck.com/assets.00/cloudflare-icon-512x512-c1lpcyo0.png");
+}
+
+/* For Desktop View */
+@media screen and (min-width: 1024px) {
+    .center {
+      width: 50%;
+    }
+}
+
+/* For Tablet View */
+@media screen and (min-device-width: 768px) 
+    and (max-device-width: 1024px) {
+    .center {
+      width: 50%;
+    }
+}
+
+/* For Mobile Portrait View */
+@media screen and (max-device-width: 480px) 
+    and (orientation: portrait) {
+    .center {
+      width: 98vw;
+    }
+}
+
+/* For Mobile Landscape View */
+@media screen and (max-device-width: 640px) 
+    and (orientation: landscape) {
+    .center {
+      width: 98vw;
+    }
+}
+
+/* For Mobile Phones Portrait or Landscape View */
+@media screen 
+    and (max-device-width: 640px) {
+    .center {
+      width: 98vw;
+    }
+}
+
+/* For iPhone 4 Portrait or Landscape View */
+@media screen and (min-device-width: 320px) 
+    and (-webkit-min-device-pixel-ratio: 2) {
+    .center {
+      width: 98vw;
+    }
+}
+
+/* For iPhone 5 Portrait or Landscape View */
+@media (device-height: 568px) 
+    and (device-width: 320px) 
+    and (-webkit-min-device-pixel-ratio: 2) {
+    .center {
+      width: 98vw;
+    }
+}
+
+/* For iPhone 6 and 6 plus Portrait or Landscape View */
+@media (min-device-height: 667px) 
+    and (min-device-width: 375px) 
+    and (-webkit-min-device-pixel-ratio: 3) {
+    .center {
+      width: 98vw;
+    }
+};
+
