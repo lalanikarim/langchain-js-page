@@ -2,6 +2,13 @@
 This project demonstrating how to host a [Cloudflare Pages](https://pages.cloudflare.com/) application interacting with [Cloulflare Workers](https://workers.cloudflare.com/).  
 This application serves a chat interface to the user for the [LangChain JS Worker](https://github.com/lalanikarim/langchain-js-page) backend. 
 
+# Technologies
+
+1. [Hono JS](https://hono.dev/) a lightweight javascript web application framework.
+2. [Htmx](https://htmx.org/) a lightweight web frontend framework that is feature-rich and an alternative to javascript-heavy frameworks.
+3. [Cloudflare Pages](https://pages.cloudflare.com/) for serverless web application hosting from Cloudflare.
+4. [Cloulflare Workers](https://workers.cloudflare.com/) for serverless functions hosting from Cloudflare.
+
 # Setup Instructions
 
 Follow these steps to set up and run the project locally:
