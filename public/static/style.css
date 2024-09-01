@@ -269,7 +269,7 @@ button[type=submit] {
 @media screen and (max-device-width: 480px) 
     and (orientation: portrait) {
     .center {
-      width: 98vw;
+      width: 95vw;
     }
 }
 
@@ -277,7 +277,7 @@ button[type=submit] {
 @media screen and (max-device-width: 640px) 
     and (orientation: landscape) {
     .center {
-      width: 98vw;
+      width: 95vw;
     }
 }
 
@@ -285,7 +285,7 @@ button[type=submit] {
 @media screen 
     and (max-device-width: 640px) {
     .center {
-      width: 98vw;
+      width: 95vw;
     }
 }
 
@@ -293,7 +293,8 @@ button[type=submit] {
 @media screen and (min-device-width: 320px) 
     and (-webkit-min-device-pixel-ratio: 2) {
     .center {
-      width: 98vw;
+      width: 95vw;
+      height: 97vh;
     }
 }
 
@@ -302,7 +303,7 @@ button[type=submit] {
     and (device-width: 320px) 
     and (-webkit-min-device-pixel-ratio: 2) {
     .center {
-      width: 98vw;
+      width: 95vw;
     }
 }
 
@@ -311,7 +312,8 @@ button[type=submit] {
     and (min-device-width: 375px) 
     and (-webkit-min-device-pixel-ratio: 3) {
     .center {
-      width: 98vw;
+      width: 95vw;
+      height: 97vh;
     }
 };
 
